@@ -1,0 +1,16 @@
+{
+  "source": "./lib",
+  "destination": "./doc",
+  "plugins": [{
+    "name": "esdoc-standard-plugin",
+    "option": {
+      "manual": {
+        "index": "./manual/index.md",
+        "asset": "./manual/asset",
+        "files": [
+          "./manual/usage.md"
+        ]
+      }
+    }
+  }]
+}

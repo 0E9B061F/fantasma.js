@@ -1,0 +1,145 @@
+body
+  font-family: sans-serif
+
+#title
+  position: absolute
+  left: 20px
+  font-size: 3em
+  line-height: 1em
+  margin: 0
+  font-weight: bold
+
+.squares
+  position: absolute
+  top: 100px
+  left: 20px
+  height: 400px
+  width: 400px
+  padding: 100px
+  border: 1px solid black
+  overflow: hidden
+
+#indicator
+  position: absolute
+  top: 100px
+  left: 622px
+  width: 200px
+  font-size: 0.6em
+  height: 1px
+  background-color: black
+  text-align: right
+
+#meter
+  position: absolute
+  top: 100px
+  left: 622px
+  height: 602px
+  width: 80px
+  overflow: hidden
+  background-color: gray
+  #real
+    position: absolute
+    top: 0
+    left: 40px
+    height: 602px
+    width: 40px
+    overflow: hidden
+    .real-part
+      box-sizing: border-box
+      padding: 4px
+      width: 40px
+      float: left
+      color: #bbb
+      font-size: 0.75em
+      font-weight: bold
+      &:nth-child(odd)
+        background-color: #454545
+      &:nth-child(even)
+        background-color: #191919
+  #ideal
+    background-color: red
+    position: absolute
+    top: 0
+    left: 0
+    height: 602px
+    width: 40px
+    overflow: hidden
+    .ideal-part
+      box-sizing: border-box
+      padding: 4px
+      width: 40px
+      float: left
+      color: #bbb
+      font-size: 0.75em
+      font-weight: bold
+      &:nth-child(odd)
+        background-color: #454545
+      &:nth-child(even)
+        background-color: #191919
+
+.core
+  width: 100%
+  height: 100%
+  color: #ddd
+  font-size: 2em
+  font-weight: bold
+  padding: 5px
+  padding-left: 10px
+  box-sizing: border-box
+
+.square
+  box-sizing: border-box
+  padding: 1px
+  float: left
+  background-color: #191919
+  &:nth-child(1)
+    padding-right: 0
+  &:nth-child(3)
+    padding-right: 0
+    padding-top: 0
+  &:nth-child(4)
+    padding-top: 0
+
+.red
+  height: 100px
+  width: 100px
+  .core
+    background-color: #de2657
+    color: #de2657 + #222
+    border: 10px solid #de2657 - #0a0a0a
+
+.blue
+  height: 100px
+  width: 300px
+  .core
+    background-color: #6e7fd2
+    color: #6e7fd2 + #222
+    border: 10px solid #6e7fd2 - #0a0a0a
+
+.green
+  clear: left
+  height: 300px
+  width: 300px
+  .core
+    background-color: #99d299
+    color: #99d299 + #191919
+    border: 10px solid #99d299 - #0a0a0a
+
+.yellow
+  height: 300px
+  width: 100px
+  .core
+    background-color: #dead25
+    color: #dead25 + #222
+    border: 10px solid #dead25 - #0a0a0a
+
+#graphs
+  position: absolute
+  top: 100px
+  left: 700px
+  width: 500px
+  height: 602px
+  padding: 1px
+  svg
+    display: block
+    float: left

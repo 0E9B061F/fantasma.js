@@ -1,0 +1,21 @@
+{
+  "srcDir": "dist-library-production",
+  "srcFiles": [
+    "**/*.js"
+  ],
+  "specDir": "spec",
+  "specFiles": [
+    "**/*-bspec.js"
+  ],
+  "helpers": [
+    "helpers/**/*.js"
+  ],
+  "env": {
+    "stopSpecOnExpectationFailure": false,
+    "stopOnSpecFailure": false,
+    "random": true
+  },
+  "browser": {
+    "name": "firefox"
+  }
+}

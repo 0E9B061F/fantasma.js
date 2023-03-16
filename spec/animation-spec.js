@@ -26,23 +26,27 @@ describe("Animation", function () {
             }
         ]
         a1 = new Animation({
-            obj: o[0],
-            prop: ["b", "b", "a"],
-            path: [
-                {to: 6, time: 500},
-                {to: 12, time: 500},
-            ],
-        }, {
-            obj: o[0],
-            prop: ["d", "b", "a"],
-            start: 500,
-            path: [
-                { to: 12, time: 500 },
-                { to: 24, time: 1000 },
-            ],
+            easing: "linear",
+            strips: [{
+                obj: o[0],
+                prop: ["b", "b", "a"],
+                path: [
+                    {to: 6, time: 500},
+                    {to: 12, time: 500},
+                ],
+            }, {
+                obj: o[0],
+                prop: ["d", "b", "a"],
+                start: 500,
+                path: [
+                    { to: 12, time: 500 },
+                    { to: 24, time: 1000 },
+                ],
+            }],
         })
     })
     it("should create a well formed animation from a series of strips", function () {
+        expect(a1.easing).toEqual("linear")
         expect(a1.totalTime).toEqual(2000)
         expect(a1.strips.length).toEqual(2)
         expect(a1.strips[0].start).toEqual(0)

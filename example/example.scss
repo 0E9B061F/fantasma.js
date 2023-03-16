@@ -1,0 +1,92 @@
+$blue: #dead25;
+$blue-dark: scale-color($blue, $lightness: -30%, $saturation: -20%);
+$blue-lite: scale-color($blue, $lightness: +20%, $saturation: -20%);
+
+$green: #99d299;
+$green-dark: scale-color($green, $lightness: -30%, $saturation: -20%);
+$green-lite: scale-color($green, $lightness: +20%, $saturation: -20%);
+
+$yellow: #6e7fd2;
+$yellow-dark: scale-color($yellow, $lightness: -30%, $saturation: -20%);
+$yellow-lite: scale-color($yellow, $lightness: +20%, $saturation: -20%);
+
+$red: #de2657;
+$red-dark: scale-color($red, $lightness: -30%, $saturation: -20%);
+$red-lite: scale-color($red, $lightness: +20%, $saturation: -20%);
+
+$coreborder: 0px;
+
+.squares {
+  width: 400px;
+  height: 400px;
+  position: relative;
+  background-color: #fff;
+}
+
+.square {
+  box-sizing: border-box;
+  padding: 3px;
+  position: absolute;
+  background-color: #505050;
+  &:nth-child(1) {
+    padding-right: 0;
+  }
+  &:nth-child(3) {
+    padding-right: 0;
+    padding-top: 0;
+  }
+  &:nth-child(4) {
+    padding-top: 0;
+  }
+  .core {
+    width: 100%;
+    height: 100%;
+    color: #ddd;
+    font-size: 2em;
+    font-weight: bold;
+    padding: 5px;
+    padding-left: 10px;
+    box-sizing: border-box;
+  }
+  &.red {
+    top: 0;
+    left: 0;
+    height: 100px;
+    width: 100px;
+    .core {
+      background-color: $red;
+      color: $red-dark;
+    }
+  }
+  &.blue {
+    top: 0;
+    right: 0;
+    height: 100px;
+    width: 300px;
+    .core {
+      background-color: $blue;
+      color: $blue-dark;
+    }
+  }
+  &.green {
+    bottom: 0;
+    left: 0;
+    height: 300px;
+    width: 300px;
+    .core {
+      background-color: $green;
+      color: $green-dark;
+    }
+  }
+
+  &.yellow {
+    bottom: 0;
+    right: 0;
+    height: 300px;
+    width: 100px;
+    .core {
+      background-color: $yellow;
+      color: $yellow-dark;
+    }
+  }
+}

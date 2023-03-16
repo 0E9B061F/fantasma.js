@@ -1,83 +1,54 @@
-'use strict'
+"use strict"
 
-const path = require('path')
+
+const path = require("path")
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+
+const MODE = process.env.NODE_ENV || "production"
+const BUILD = process.env.FANJS_BUILD || "library"
+const DIST = `./dist-${BUILD}-${MODE}`
+
+let entry = "./build.js"
+let rules = [
+  { test: /\.js$/, exclude: /node_modules/, loader: "babel-loader" },
+]
+let plugins = []
+
+if (BUILD == "example") {
+  entry = "./example/entry.js"
+  rules = [
+    ...rules,
+    { test: /\.css$/i,
+      use: ["style-loader", "css-loader"],
+    },
+    { test: /\.s[ac]ss$/i,
+      use: [ "style-loader", "css-loader", "sass-loader" ],
+    },
+  ]
+  plugins = [
+    new HtmlWebpackPlugin({
+      title: "Fantasma Example",
+      inject: "body",
+    }),
+  ]
+}
+
+console.log(`BUILDING ${BUILD} IN ${MODE} TO ${DIST}`)
 
 
 module.exports = {
-  entry: './test/entry.js',
+  entry,
+  mode: MODE,
+  devtool: "source-map",
   output: {
-    path: path.resolve(__dirname, './public'),
-    filename: 'fantasma-test.js'
+    path: path.resolve(__dirname, DIST),
+    filename: "fantasma.js",
+    library: "Fantasma",
+    libraryTarget: "var",
   },
-  mode: 'development',
-  devtool: 'eval-source-map',
-  plugins: [
-    new HtmlWebpackPlugin({
-      title: 'fantasma.js Test Apparatus'
-    })
-  ],
-  module: {
-    rules: [
-      {
-        test: /\.js$/,
-        exclude: /(node_modules|bower_components)/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['env']
-          }
-        }
-      },
-      {
-        test: /\.html$/,
-        use: {
-          loader: 'html-loader'
-        }
-      },
-      {
-        test: /\.styl$/,
-        use: [
-          'style-loader',
-          'css-loader',
-          'stylus-loader'
-        ],
-      },
-      {
-        test: /\.hbs$/,
-        loader: "handlebars-loader"
-      },
-      {
-        test: /\.css$/,
-        use: [
-          { loader: "style-loader" },
-          { loader: "css-loader" }
-        ]
-      },
-      {
-        test: /\.(eot|woff|ttf|svg|woff2)$/,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: '[name].[ext]',
-              outputPath: '/fonts/'
-            }
-          }
-        ]
-      },
-      {
-        test: /\.(jpg|gif|png)$/,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: '[name].[ext]',
-              outputPath: '/images/'
-            }
-          }
-        ]
-      }
-    ]
-  }
+  module: { rules },
+  resolve: {
+    extensions: ['*', '.js']
+  },
+  plugins,
 }

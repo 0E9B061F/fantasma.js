@@ -5,24 +5,61 @@ require('./example.scss')
 const html = require('waxwing.js')
 const { Animation } = require('../lib/animation.js')
 
+class FourSquare {
+  constructor(anchor, animation, depth=0) {
+    this.anchor = anchor
+    this.depth = depth
+    this.leaf = this.depth == 0
+    this.children = []
+    this.animation = animation
+    this.els = html.start(this.anchor, c => {
+      c.div('@bg squares', c => {
+        c.div(`@rs red square`, c => this.mkcore(c, "rc"))
+        c.div(`@bs blue square`, c => this.mkcore(c, "bc"))
+        c.div(`@gs green square`, c => this.mkcore(c, "gc"))
+        c.div(`@ys yellow square`, c => this.mkcore(c, "yc"))
+      })
+    })
+    console.log(this.els)
+    this.player = this.animation.player({els: this.els})
+    this.populate()
+  }
+  addchild(to) {
+    this.children.push(new FourSquare(this.els[to], this.animation, this.depth-1))
+  }
+  populate() {
+    if (this.depth > 0) {
+      this.addchild("rc")
+      this.addchild("yc")
+      this.addchild("gc")
+      this.addchild("bc")
+    }
+  }
+  mkcore(c, name) {
+    c.div(`@${name} ${this.leaf ? "leaf" : ""} core`, c=> {
+      // if (this.depth == 0) c.div('dot')
+    })
+  }
+  play() {
+    this.player.play()
+    this.children.forEach(c=> c.play())
+  }
+}
+
 const els = html.start(c=> {
-  c.h1('#title', c=> c.text('fantasma.js Test Apparatus'))
-  c.div('squares', {anchor: "background"}, c=> {
-    c.div('#rs red square', { anchor: "rs" }, c=> c.div('core', c=> c.text('R')))
-    c.div('#bs blue square', { anchor: "bs" }, c=> c.div('core', c=> c.text('Y')))
-    c.div('#gs green square', { anchor: "gs" }, c=> c.div('core', c=> c.text('G')))
-    c.div('#ys yellow square', { anchor: "ys" }, c=> c.div('core', c=> c.text('B')))
-  })
-  c.div("bar", c=> {
-    c.a("#replay button", {anchor: "replay", href: ""}, c=> c.text("REPLAY"))
-    c.a("#smooth button", {anchor: "smooth", href: ""}, c=> c.text("REVEAL"))
-    c.div("spacer")
-    c.span("length info", {anchor: "length"})
+  c.div("#example-main", c=> {
+    c.div("$controls bar", c => {
+      c.h1('$title', c=> c.text('fantasma.js Example'))
+      c.div("spacer")
+      c.a("@replay button", { href: "" }, c => c.text("REPLAY"))
+      c.a("@smooth button", { href: "" }, c => c.text("SMOOTH"))
+    })
+    c.div('$viewer smooth')
   })
 })
 
-const wide = 75
-const thin = 25
+const wide = 80
+const thin = 20
 const cent = 50
 
 const p1 = [
@@ -184,23 +221,23 @@ const animation = new Animation({
 
 })
 
-console.log(animation)
-console.log(els.rs)
 
-const player = animation.player({els})
+
+const fs = new FourSquare(els.viewer, animation, 2)
+console.log(fs)
 
 els.replay.addEventListener("click", e => {
   e.preventDefault()
-  player.play()
+  fs.play()
 })
 
 els.smooth.addEventListener("click", e => {
   e.preventDefault()
-  els.background.classList.toggle("smooth")
-  if (els.background.classList.contains("smooth")) {
+  els.viewer.classList.toggle("smooth")
+  if (els.viewer.classList.contains("smooth")) {
     els.smooth.textContent = "SMOOTH"
   }
   else els.smooth.textContent = "REVEAL"
 })
 
-player.play()
+fs.play()

@@ -22,14 +22,14 @@ describe("Fantasma", function() {
         a1 = new Fantasma({
             easing: "linear",
             strips: [{
-                obj: o[0],
+                obj: "o",
                 prop: ["b", "b", "a"],
                 path: [
                     { to: 6, time: 500 },
                     { to: 12, time: 500 },
                 ],
             }, {
-                obj: o[0],
+                obj: "o",
                 prop: ["d", "b", "a"],
                 start: 500,
                 path: [
@@ -42,14 +42,14 @@ describe("Fantasma", function() {
             easing: "linear",
             scale: 2,
             strips: [{
-                obj: o[0],
+                obj: "o",
                 prop: ["b", "b", "a"],
                 path: [
                     { to: 6, time: 500 },
                     { to: 12, time: 500 },
                 ],
             }, {
-                obj: o[0],
+                obj: "o",
                 prop: ["d", "b", "a"],
                 start: 500,
                 path: [
@@ -62,14 +62,14 @@ describe("Fantasma", function() {
             easing: "linear",
             scale: 0.5,
             strips: [{
-                obj: o[0],
+                obj: "o",
                 prop: ["b", "b", "a"],
                 path: [
                     { to: 6, time: 500 },
                     { to: 12, time: 500 },
                 ],
             }, {
-                obj: o[0],
+                obj: "o",
                 prop: ["d", "b", "a"],
                 start: 500,
                 path: [
@@ -105,6 +105,8 @@ describe("Fantasma", function() {
             expect(o[0].b.b.a).toEqual(12)
             expect(o[0].d.b.a).toEqual(24)
             done()
+        }, els: {
+            o: o[0],
         }}).play()
     })
     it("should scale up", function (done) {
@@ -120,6 +122,8 @@ describe("Fantasma", function() {
             expect(o[0].b.b.a).toEqual(12)
             expect(o[0].d.b.a).toEqual(24)
             done()
+        }, els: {
+            o: o[0],
         }}).play()
     })
     it("should scale down", function (done) {
@@ -136,6 +140,8 @@ describe("Fantasma", function() {
                 expect(o[0].b.b.a).toEqual(12)
                 expect(o[0].d.b.a).toEqual(24)
                 done()
+            }, els: {
+                o: o[0],
             }
         }).play()
     })

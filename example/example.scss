@@ -14,20 +14,29 @@ $red: #de2657;
 $red-dark: scale-color($red, $lightness: -30%, $saturation: -20%);
 $red-lite: scale-color($red, $lightness: +20%, $saturation: -20%);
 
+$black: #505050;
+$gray: #cdcdcd;
+$white: #ffffff;
+
 $coreborder: 0px;
+$wide: 75%;
+$thin: 25%;
 
 .squares {
-  width: 400px;
-  height: 400px;
+  width: 500px;
+  height: 800px;
   position: relative;
-  background-color: #fff;
+  background-color: $white;
+  &.smooth {
+    background-color: $black;
+  }
 }
 
-.square {
+.squares .square {
   box-sizing: border-box;
   padding: 3px;
   position: absolute;
-  background-color: #505050;
+  background-color: $black;
   &:nth-child(1) {
     padding-right: 0;
   }
@@ -41,18 +50,20 @@ $coreborder: 0px;
   .core {
     width: 100%;
     height: 100%;
-    color: #ddd;
     font-size: 2em;
     font-weight: bold;
-    padding: 5px;
-    padding-left: 10px;
+    text-align: center;
     box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
   &.red {
     top: 0;
     left: 0;
-    height: 100px;
-    width: 100px;
+    height: $thin;
+    width: $thin;
     .core {
       background-color: $red;
       color: $red-dark;
@@ -61,8 +72,8 @@ $coreborder: 0px;
   &.blue {
     top: 0;
     right: 0;
-    height: 100px;
-    width: 300px;
+    height: $thin;
+    width: $wide;
     .core {
       background-color: $blue;
       color: $blue-dark;
@@ -71,8 +82,8 @@ $coreborder: 0px;
   &.green {
     bottom: 0;
     left: 0;
-    height: 300px;
-    width: 300px;
+    height: $wide;
+    width: $wide;
     .core {
       background-color: $green;
       color: $green-dark;
@@ -82,11 +93,27 @@ $coreborder: 0px;
   &.yellow {
     bottom: 0;
     right: 0;
-    height: 300px;
-    width: 100px;
+    height: $wide;
+    width: $thin;
     .core {
       background-color: $yellow;
       color: $yellow-dark;
+    }
+  }
+}
+
+.bar {
+  display: flex;
+  gap: 5px;
+  padding-top: 5px;
+  .button {
+    text-decoration: none;
+    background-color: $gray;
+    padding: 3px 6px 3px 6px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    &:hover {
+      filter: brightness(1.1);
     }
   }
 }

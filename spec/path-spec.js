@@ -49,12 +49,12 @@ describe("Segment", function() {
 describe("Path", function() {
     let p1, p2
     beforeEach(function() {
-        p1 = new Path(0, "linear",
+        p1 = new Path(0, 1,
             { from: 80, to: 160, time: 500 },
             { to: 360, time: 500 },
             { to: 0, time: 1000 },
         )
-        p2 = new Path(80, "linear",
+        p2 = new Path(80, 2,
             { to: 160, time: 500 },
             { to: 360, time: 500 },
             { to: 0, time: 1000 },
@@ -63,11 +63,11 @@ describe("Path", function() {
     it("should construct a path from a series of segment definitions", function() {
         expect(p1.segments.length).toEqual(3)
         expect(p1.totalTime).toEqual(2000)
-        expect(p1.easing).toEqual("linear")
+        expect(p1.scale).toEqual(1)
         expect(p1.startval).toEqual(0)
         expect(p2.segments.length).toEqual(3)
-        expect(p2.totalTime).toEqual(2000)
-        expect(p2.easing).toEqual("linear")
+        expect(p2.totalTime).toEqual(4000)
+        expect(p2.scale).toEqual(2)
         expect(p2.startval).toEqual(80)
     })
     it("should get a segment for a t value", function() {

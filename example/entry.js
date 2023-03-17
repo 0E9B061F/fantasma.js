@@ -6,7 +6,7 @@ const html = require('waxwing.js')
 const { Animation } = require('../lib/animation.js')
 
 class FourSquare {
-  constructor(anchor, animation, depth=0) {
+  constructor(anchor, animation, depth=0, before=null, after=null, eachFrame=null) {
     this.anchor = anchor
     this.depth = depth
     this.leaf = this.depth == 0
@@ -21,7 +21,7 @@ class FourSquare {
       })
     })
     console.log(this.els)
-    this.player = this.animation.player({els: this.els})
+    this.player = this.animation.player({els: this.els, before, after, eachFrame})
     this.populate()
   }
   addchild(to) {
@@ -50,9 +50,12 @@ const els = html.start(c=> {
   c.div("#example-main", c=> {
     c.div("$controls bar", c => {
       c.h1('$title', c=> c.text('fantasma.js Example'))
-      c.div("spacer")
+      c.div("spacer", c=> {
+        c.div("slot", c=> c.div("@pt progress"))
+        c.div("slot", c=> c.div("@pr progress"))
+      })
       c.a("@replay button", { href: "" }, c => c.text("REPLAY"))
-      c.a("@smooth button", { href: "" }, c => c.text("SMOOTH"))
+      c.a("@smooth button active", { href: "" }, c => c.text("SMOOTH"))
     })
     c.div('$viewer smooth')
   })
@@ -223,7 +226,14 @@ const animation = new Animation({
 
 
 
-const fs = new FourSquare(els.viewer, animation, 2)
+const fs = new FourSquare(els.viewer, animation, 2, ()=> {
+  els.replay.classList.remove("active")
+}, ()=> {
+  els.replay.classList.add("active")
+}, p=> {
+  els.pt.style.width = `${100 * p.t}%`
+  els.pr.style.width = `${100 * p.rt}%`
+})
 console.log(fs)
 
 els.replay.addEventListener("click", e => {
@@ -235,9 +245,10 @@ els.smooth.addEventListener("click", e => {
   e.preventDefault()
   els.viewer.classList.toggle("smooth")
   if (els.viewer.classList.contains("smooth")) {
-    els.smooth.textContent = "SMOOTH"
+    els.smooth.classList.add("active")
+  } else {
+    els.smooth.classList.remove("active")
   }
-  else els.smooth.textContent = "REVEAL"
 })
 
 fs.play()

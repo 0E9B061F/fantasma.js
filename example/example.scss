@@ -7,8 +7,9 @@ $green-dark: scale-color($green, $lightness: -30%, $saturation: -20%);
 $green-lite: scale-color($green, $lightness: +20%, $saturation: -20%);
 
 $yellow: #6e7fd2;
-$yellow-dark: scale-color($yellow, $lightness: -40%, $saturation: -40%);
-$yellow-lite: scale-color($yellow, $lightness: +30%, $saturation: -20%);
+$yellow-dark: scale-color($yellow, $lightness: -40%, $saturation: -50%);
+$yellow-lite: scale-color($yellow, $lightness: +40%, $saturation: -20%);
+$yellow-white: scale-color($yellow, $lightness: +50%, $saturation: -40%);
 
 $red: #de2657;
 $red-dark: scale-color($red, $lightness: -30%, $saturation: -20%);
@@ -31,6 +32,7 @@ body {
   flex-direction: column;
   width: 100%;
   height: 100vh;
+  font-family: "Segoe UI", Candara, "DejaVu Sans", "Bitstream Vera Sans", "Trebuchet MS", Verdana, "Verdana Ref", sans-serif;
 }
 
 #viewer {
@@ -152,11 +154,28 @@ body {
   #title {
     height: 2rem;
     line-height: 2rem;
-    font-size: 2rem;
+    font-size: 1.4rem;
     margin: 0;
+    margin-right: 0.5rem;
+    margin-left: 0.5rem;
+    color: $yellow-white;
   }
   .spacer {
     flex: 1 1 auto;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    .slot {
+      width: 100%;
+      background-color: $yellow-dark;
+    }
+    .progress {
+      height: calc(((6px + 1rem) / 2) - 2.5px);
+      background-color: $yellow-lite;
+      box-sizing: border-box;
+    }
   }
   .button {
     text-decoration: none;
@@ -165,8 +184,14 @@ body {
     padding: 3px 6px 3px 6px;
     font-weight: bold;
     font-size: 0.9rem;
+    line-height: 0.9rem;
+    height: 1rem;
     &:hover {
       filter: brightness(1.1);
+    }
+    &.active {
+      background-color: $yellow-lite;
+      color: $yellow-dark;
     }
   }
 }

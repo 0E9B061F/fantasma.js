@@ -166,15 +166,33 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 5px;
+    gap: 3px;
     .slot {
       width: 100%;
       background-color: $yellow-dark;
     }
     .progress {
-      height: calc(((6px + 1rem) / 2) - 2.5px);
+      height: calc(((6px + 1rem) / 2) - 1.5px);
       background-color: $yellow-lite;
       box-sizing: border-box;
+    }
+    #loopbar {
+      height: 5px;
+      display: flex;
+      gap: 3px;
+      .loopmark {
+        height: 100%;
+        min-width: 1px;
+        max-width: 10px;
+        flex: 1 1 auto;
+        background-color: $yellow-dark;
+        &.forward {
+          max-width: 100%;
+        }
+        &.active {
+          background-color: $yellow-lite;
+        }
+      }
     }
   }
   .button {
@@ -186,6 +204,7 @@ body {
     font-size: 0.9rem;
     line-height: 0.9rem;
     height: 1rem;
+    margin-bottom: 8px;
     &:hover {
       filter: brightness(1.1);
     }

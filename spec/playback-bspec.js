@@ -78,6 +78,25 @@ describe("Fantasma", function() {
                 ],
             }],
         })
+        a4 = new Fantasma({
+            easing: "linear",
+            strips: [{
+                obj: "o",
+                prop: ["b", "b", "a"],
+                path: [
+                    { to: 6, time: 500 },
+                    { to: 12, time: 500 },
+                ],
+            }, {
+                obj: "o",
+                prop: ["d", "b", "a"],
+                start: 500,
+                path: [
+                    { to: 12, time: 500 },
+                    { to: 24, time: 1000 },
+                ],
+            }],
+        })
     })
     it("should create a well formed animation from a series of strips", function () {
         expect(a1.totalTime).toEqual(2000)
@@ -136,6 +155,26 @@ describe("Fantasma", function() {
                 e = Date.now()
                 d = e - s
                 r = d / 1000
+                expect(r).toBeCloseTo(1, 1)
+                expect(o[0].b.b.a).toEqual(12)
+                expect(o[0].d.b.a).toEqual(24)
+                done()
+            }, els: {
+                o: o[0],
+            }
+        }).play()
+    })
+    it("should loop animations", function (done) {
+        a1.player({
+            loop: 1,
+            before: () => {
+                s = Date.now()
+                expect(o[0].b.b.a).toEqual(3)
+                expect(o[0].d.b.a).toEqual(6)
+            }, after: () => {
+                e = Date.now()
+                d = e - s
+                r = d / 4000
                 expect(r).toBeCloseTo(1, 1)
                 expect(o[0].b.b.a).toEqual(12)
                 expect(o[0].d.b.a).toEqual(24)

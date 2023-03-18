@@ -6,7 +6,8 @@ const html = require('waxwing.js')
 const { Animation } = require('../lib/animation.js')
 
 class FourSquare {
-  constructor(anchor, animation, depth=0, before=null, after=null, eachFrame=null) {
+  constructor(parent, anchor, animation, depth=0, conf={}) {
+    this.parent = parent
     this.anchor = anchor
     this.depth = depth
     this.leaf = this.depth == 0
@@ -20,12 +21,15 @@ class FourSquare {
         c.div(`@ys yellow square`, c => this.mkcore(c, "yc"))
       })
     })
-    console.log(this.els)
-    this.player = this.animation.player({els: this.els, before, after, eachFrame})
+    if (this.parent) {
+      this.player = this.parent.player.sub({els: this.els})
+    } else {
+      this.player = this.animation.player({els: this.els, ...conf})
+    }
     this.populate()
   }
   addchild(to) {
-    this.children.push(new FourSquare(this.els[to], this.animation, this.depth-1))
+    this.children.push(new FourSquare(this, this.els[to], this.animation, this.depth-1))
   }
   populate() {
     if (this.depth > 0) {
@@ -42,7 +46,6 @@ class FourSquare {
   }
   play() {
     this.player.play()
-    this.children.forEach(c=> c.play())
   }
 }
 
@@ -51,18 +54,19 @@ const els = html.start(c=> {
     c.div("$controls bar", c => {
       c.h1('$title', c=> c.text('fantasma.js Example'))
       c.div("spacer", c=> {
-        c.div("slot", c=> c.div("@pt progress"))
         c.div("slot", c=> c.div("@pr progress"))
+        c.div("slot", c=> c.div("@pt progress"))
+        c.div("$loopbar")
       })
-      c.a("@replay button", { href: "" }, c => c.text("REPLAY"))
+      c.a("@replay button", { href: "" }, c => c.text("PLAY"))
       c.a("@smooth button active", { href: "" }, c => c.text("SMOOTH"))
     })
     c.div('$viewer smooth')
   })
 })
 
-const wide = 80
-const thin = 20
+const wide = 81
+const thin = 19
 const cent = 50
 
 const p1 = [
@@ -85,8 +89,8 @@ const p2 = [
 ]
 
 const animation = new Animation({
-    easing: "easeOutCubic",
-    scale: 3,
+    easing: "easeOutQuad",
+    scale: 1,
   // {
   //   prop: ["style"],
   //   unit: px,
@@ -224,17 +228,50 @@ const animation = new Animation({
 
 })
 
+const loop = -1
 
+let markels = {}
+const setmarks =()=> {
+  els.loopbar.textContent = ""
+  if (loop >= 0) {
+    return html.start(els.loopbar, c => {
+      for (let x = 0; x <= loop; x++) {
+        c.div(`$mark${x} loopmark`)
+      }
+    })
+  } else {
+    html.start(els.loopbar, c => {
+      c.div(`loopmark forward`)
+    })
+  }
+}
 
-const fs = new FourSquare(els.viewer, animation, 2, ()=> {
-  els.replay.classList.remove("active")
-}, ()=> {
-  els.replay.classList.add("active")
-}, p=> {
-  els.pt.style.width = `${100 * p.t}%`
-  els.pr.style.width = `${100 * p.rt}%`
+const fs = new FourSquare(null, els.viewer, animation, 3, {
+  before: ()=> {
+    els.replay.classList.remove("active")
+    markels = setmarks()
+  },
+  after: ()=> {
+    els.replay.classList.add("active")
+  },
+  afterLoop: p=> {
+    if (loop >= 0) {
+      for (let x = 0; x <= p.loops; x++) {
+        markels[`mark${x}`].classList.add("active")
+      }
+    } else {
+      document.querySelector("#loopbar .loopmark:last-child").classList.add("active")
+      html.start(els.loopbar, c => {
+        c.div(`loopmark forward`)
+      })
+    }
+  },
+  eachFrame: p=> {
+    els.pt.style.width = `${100 * p.t}%`
+    els.pr.style.width = `${100 * p.rt}%`
+  },
+  loop,
 })
-console.log(fs)
 
 els.replay.addEventListener("click", e => {
   e.preventDefault()

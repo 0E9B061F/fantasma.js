@@ -47,6 +47,9 @@ class FourSquare {
   play() {
     this.player.play()
   }
+  pause() {
+    this.player.pause()
+  }
 }
 
 const els = html.start(c=> {
@@ -58,8 +61,9 @@ const els = html.start(c=> {
         c.div("slot", c=> c.div("@pt progress"))
         c.div("$loopbar")
       })
-      c.a("@replay button", { href: "" }, c => c.text("PLAY"))
-      c.a("@smooth button active", { href: "" }, c => c.text("SMOOTH"))
+      c.div("@replay lock button", c => c.text("PLAY"))
+      c.div("@pause lock button", c => c.text("PAUSE"))
+      c.div("@smooth toggle button active", c => c.text("SMOOTH"))
     })
     c.div('$viewer smooth')
   })
@@ -90,7 +94,7 @@ const p2 = [
 
 const animation = new Animation({
     easing: "easeOutQuad",
-    scale: 1,
+    scale: 2,
   // {
   //   prop: ["style"],
   //   unit: px,
@@ -228,7 +232,7 @@ const animation = new Animation({
 
 })
 
-const loop = -1
+const loop = 1
 
 let markels = {}
 const setmarks =()=> {
@@ -249,10 +253,20 @@ const setmarks =()=> {
 const fs = new FourSquare(null, els.viewer, animation, 3, {
   before: ()=> {
     els.replay.classList.remove("active")
+    els.pause.classList.add("active")
     markels = setmarks()
   },
   after: ()=> {
     els.replay.classList.add("active")
+    els.pause.classList.remove("active")
+  },
+  beforePause: ()=> {
+    els.replay.classList.add("active")
+    els.pause.classList.remove("active")
+  },
+  afterPause: () => {
+    els.replay.classList.remove("active")
+    els.pause.classList.add("active")
   },
   afterLoop: p=> {
     if (loop >= 0) {
@@ -271,14 +285,21 @@ const fs = new FourSquare(null, els.viewer, animation, 3, {
     els.pr.style.width = `${100 * p.rt}%`
   },
   loop,
+  reverse: true,
 })
 
-els.replay.addEventListener("click", e => {
+els.replay.addEventListener("click", e=> {
   e.preventDefault()
-  fs.play()
+  if (e.target.classList.contains("active")) {
+    fs.play()
+  }
+})
+els.pause.addEventListener("click", e=> {
+  e.preventDefault()
+  fs.pause()
 })
 
-els.smooth.addEventListener("click", e => {
+els.smooth.addEventListener("click", e=> {
   e.preventDefault()
   els.viewer.classList.toggle("smooth")
   if (els.viewer.classList.contains("smooth")) {

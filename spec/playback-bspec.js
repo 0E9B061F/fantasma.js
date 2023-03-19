@@ -184,4 +184,24 @@ describe("Fantasma", function() {
             }
         }).play()
     })
+    it("should reverse animations", function (done) {
+        a1.player({
+            reverse: true,
+            before: () => {
+                s = Date.now()
+                expect(o[0].b.b.a).toEqual(3)
+                expect(o[0].d.b.a).toEqual(6)
+            }, after: () => {
+                e = Date.now()
+                d = e - s
+                r = d / 2000
+                expect(r).toBeCloseTo(1, 1)
+                expect(o[0].b.b.a).toEqual(3)
+                expect(o[0].d.b.a).toEqual(6)
+                done()
+            }, els: {
+                o: o[0],
+            }
+        }).play()
+    })
 })

@@ -5,7 +5,7 @@ const { Strip, Animation } = require("../lib/animation.js")
 const EASINGS = require("../lib/easings.js")
 
 
-describe("Animation", function () {
+describe("Animation", function() {
     let o, a1
     beforeEach(function () {
         o = [
@@ -46,7 +46,7 @@ describe("Animation", function () {
             }],
         })
     })
-    it("should create a well formed animation from a series of strips", function () {
+    it("should create a well formed animation from a series of strips", function() {
         expect(a1.easing).toEqual(EASINGS["linear"])
         expect(a1.totalTime).toEqual(2000)
         expect(a1.strips.length).toEqual(2)
@@ -59,7 +59,7 @@ describe("Animation", function () {
         expect(a1.strips[1].endT).toEqual(1)
         expect(a1.strips[1].totalTime).toEqual(2000)
     })
-    it("should correctly set values", function () {
+    it("should correctly set values", function() {
         const player = a1.player({els: {o: o[0]}})
         player.set(0)
         expect(o[0].b.b.a).toEqual(3)

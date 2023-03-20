@@ -204,4 +204,25 @@ describe("Fantasma", function() {
             }
         }).play()
     })
+    it("should bounce animations", function (done) {
+        a3.player({
+            bounce: true,
+            loop: 1,
+            before: () => {
+                s = Date.now()
+                expect(o[0].b.b.a).toEqual(3)
+                expect(o[0].d.b.a).toEqual(6)
+            }, after: () => {
+                e = Date.now()
+                d = e - s
+                r = d / 2000
+                expect(r).toBeCloseTo(1, 1)
+                expect(o[0].b.b.a).toEqual(3)
+                expect(o[0].d.b.a).toEqual(6)
+                done()
+            }, els: {
+                o: o[0],
+            }
+        }).play()
+    })
 })

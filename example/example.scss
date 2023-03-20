@@ -207,6 +207,7 @@ body {
     line-height: 0.9rem;
     height: 1rem;
     margin-bottom: 8px;
+    user-select: none;
     cursor: default;
     &.active {
       background-color: $yellow-lite;

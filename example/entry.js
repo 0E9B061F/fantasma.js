@@ -232,7 +232,7 @@ const animation = new Animation({
 
 })
 
-const loop = 1
+const loop = 3
 
 let markels = {}
 const setmarks =()=> {
@@ -285,7 +285,8 @@ const fs = new FourSquare(null, els.viewer, animation, 3, {
     els.pr.style.width = `${100 * p.rt}%`
   },
   loop,
-  reverse: true,
+  reverse: false,
+  bounce: true,
 })
 
 els.replay.addEventListener("click", e=> {

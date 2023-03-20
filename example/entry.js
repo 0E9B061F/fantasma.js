@@ -50,16 +50,20 @@ class FourSquare {
   pause() {
     this.player.pause()
   }
+  skip(t) {
+    this.player.skip(t)
+  }
 }
 
 const els = html.start(c=> {
   c.div("#example-main", c=> {
     c.div("$controls bar", c => {
       c.h1('$title', c=> c.text('fantasma.js Example'))
-      c.div("spacer", c=> {
+      c.div("@spacer spacer", c=> {
         c.div("slot", c=> c.div("@pr progress"))
         c.div("slot", c=> c.div("@pt progress"))
         c.div("$loopbar")
+        c.div("$locbar locbar")
       })
       c.div("@replay lock button", c => c.text("PLAY"))
       c.div("@pause lock button", c => c.text("PAUSE"))
@@ -268,6 +272,10 @@ const fs = new FourSquare(null, els.viewer, animation, 3, {
     els.replay.classList.remove("active")
     els.pause.classList.add("active")
   },
+  afterSkip: p=> {
+    els.pt.style.width = `${100 * p.t}%`
+    els.pr.style.width = `${100 * p.rt}%`
+  },
   afterLoop: p=> {
     if (loop >= 0) {
       for (let x = 0; x <= p.loops; x++) {
@@ -298,6 +306,15 @@ els.replay.addEventListener("click", e=> {
 els.pause.addEventListener("click", e=> {
   e.preventDefault()
   fs.pause()
+})
+
+els.locbar.addEventListener("click", e => {
+  e.preventDefault()
+  const pos = e.offsetX
+  const w = e.target.offsetWidth
+  const r = Math.max(0, Math.min(1, pos / w))
+  console.log(pos, w, r)
+  fs.skip(r)
 })
 
 els.smooth.addEventListener("click", e=> {

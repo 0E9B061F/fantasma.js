@@ -168,7 +168,15 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    position: relative;
     gap: 3px;
+    .locbar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: calc(8px + 1rem);
+    }
     .slot {
       width: 100%;
       background-color: $yellow-dark;

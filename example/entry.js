@@ -97,7 +97,7 @@ const p2 = [
 ]
 
 const animation = new Animation({
-    easing: "easeOutQuad",
+    easing: "easeOutSine",
     scale: 2,
   // {
   //   prop: ["style"],
@@ -116,7 +116,7 @@ const animation = new Animation({
   // },
   strips: [
     {
-      obj: "rs", prop: ["style", "height"], unit: "%", easing: "easeInQuad", path: [
+      obj: "rs", prop: ["style", "height"], unit: "%", easing: "easeInSine", path: [
         ...p1,
         { to: wide, time: 500 },
         { to: thin, time: 700 },
@@ -127,7 +127,7 @@ const animation = new Animation({
         { to: thin, time: 500 },
       ]
     }, {
-      obj: "bs", prop: ["style", "height"], unit: "%", easing: "easeInQuad", path: [
+      obj: "bs", prop: ["style", "height"], unit: "%", easing: "easeInSine", path: [
         ...p1,
         { to: thin, time: 500 },
         { to: wide, time: 700 },
@@ -138,7 +138,7 @@ const animation = new Animation({
         { to: thin, time: 500 },
       ]
     }, {
-      obj: "gs", prop: ["style", "height"], unit: "%", easing: "easeInQuad", path: [
+      obj: "gs", prop: ["style", "height"], unit: "%", easing: "easeInSine", path: [
         ...p2,
         { to: thin, time: 500 },
         { to: wide, time: 700 },
@@ -149,7 +149,7 @@ const animation = new Animation({
         { to: wide, time: 500 },
       ]
     }, {
-      obj: "ys", prop: ["style", "height"], unit: "%", easing: "easeInQuad", path: [
+      obj: "ys", prop: ["style", "height"], unit: "%", easing: "easeInSine", path: [
         ...p2,
         { to: wide, time: 500 },
         { to: thin, time: 700 },
@@ -160,7 +160,7 @@ const animation = new Animation({
         { to: wide, time: 500 },
       ]
     }, {
-      obj: "rs", prop: ["style", "width"], unit: "%", easing: "easeInQuad", path: [
+      obj: "rs", prop: ["style", "width"], unit: "%", easing: "easeInSine", path: [
         { from: thin, to: thin, time: 500 },
         { to: wide, time: 500 },
         { to: wide, time: 600 },
@@ -178,7 +178,7 @@ const animation = new Animation({
         { to: thin, time: 500 },
       ]
     }, {
-      obj: "bs", prop: ["style", "width"], unit: "%", easing: "easeInQuad", path: [
+      obj: "bs", prop: ["style", "width"], unit: "%", easing: "easeInSine", path: [
         { from: wide, to: wide, time: 500 },
         { to: thin, time: 500 },
         { to: thin, time: 600 },
@@ -196,7 +196,7 @@ const animation = new Animation({
         { to: wide, time: 500 },
       ]
     }, {
-      obj: "gs", prop: ["style", "width"], unit: "%", easing: "easeInQuad", path: [
+      obj: "gs", prop: ["style", "width"], unit: "%", easing: "easeInSine", path: [
         { from: wide, to: wide, time: 500 },
         { to: wide, time: 500 },
         { to: wide, time: 600 },
@@ -214,7 +214,7 @@ const animation = new Animation({
         { to: wide, time: 500 },
       ]
     }, {
-      obj: "ys", prop: ["style", "width"], unit: "%", easing: "easeInQuad", path: [
+      obj: "ys", prop: ["style", "width"], unit: "%", easing: "easeInSine", path: [
         { from: thin, to: thin, time: 500 },
         { to: thin, time: 500 },
         { to: thin, time: 600 },

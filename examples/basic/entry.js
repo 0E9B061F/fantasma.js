@@ -54,6 +54,7 @@ const p4 = [
 
 const animation = new Animation({
   scale: 3,
+  easing: "easeOutQuad",
   strips: [
     { obj: "sq1", prop: ["style", "left"], unit: "px", path: p1},
     { obj: "sq2", prop: ["style", "left"], unit: "px", path: p2},

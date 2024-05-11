@@ -3,7 +3,7 @@
 require('./example.scss')
 
 const html = require('waxwing.js')
-const { Animation } = require('../lib/animation.js')
+const { Animation } = require('../../lib/animation.js')
 
 class FourSquare {
   constructor(parent, anchor, animation, depth=0, conf={}) {

@@ -6,7 +6,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const MODE = process.env.NODE_ENV || "production"
 const BUILD = process.env.FANJS_BUILD || "library"
-const DIST = `./dist-${BUILD}-${MODE}`
+let DIST = `./dist-${BUILD}-${MODE}`
 
 let entry = "./build.js"
 let rules = [
@@ -14,8 +14,9 @@ let rules = [
 ]
 let plugins = []
 
-if (BUILD == "example") {
-  entry = "./example/entry.js"
+if (BUILD != "library") {
+  DIST = `./examples/${BUILD}/dist-${BUILD}-${MODE}`
+  entry = `./examples/${BUILD}/entry.js`
   rules = [
     ...rules,
     { test: /\.css$/i,
@@ -27,7 +28,7 @@ if (BUILD == "example") {
   ]
   plugins = [
     new HtmlWebpackPlugin({
-      title: "Fantasma Example",
+      title: `${BUILD} | Fantasma Example`,
       inject: "body",
     }),
   ]

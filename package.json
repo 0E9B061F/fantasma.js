@@ -1,10 +1,24 @@
 {
   "name": "fantasma.js",
-  "version": "0.3.0",
-  "description": "A sophisticated animation library",
+  "version": "0.3.1",
+  "series": "YAOGUI",
+  "description": "A sophisticated animation library for the web",
+  "license": "MIT",
+  "homepage": "https://github.com/0E9B061F/fantasma.js",
+  "bugs": "https://github.com/0E9B061F/fantasma.js/issues",
+  "repository": "github:0E9B061F/fantasma.js",
+  "author": {
+    "name": "0E9B061F",
+    "email": "0E9B061F@protonmail.com",
+    "url": "https://github.com/0E9B061F"
+  },
   "main": "lib/fantasma.js",
+  "directories": {
+    "lib": "lib",
+    "test": "spec"
+  },
   "files": [
-    "lib/fantasma.js"
+    "lib/**/*"
   ],
   "scripts": {
     "test": "jasmine",
@@ -22,10 +36,16 @@
     "examples:dev": "run-s example:basic:dev example:4sq:dev",
     "build:all": "run-s build examples",
     "build:all:dev": "run-s build:dev examples:dev",
-    "clobber": "rimraf ./doc ./dist-library-production ./dist-library-development ./examples/foursquare/dist-foursquare-production ./examples/foursquare/dist-foursquare-development ./examples/basic/dist-basic-production ./examples/basic/dist-basic-development" 
+    "clobber": "rimraf ./doc ./dist-library-production ./dist-library-development ./examples/foursquare/dist-foursquare-production ./examples/foursquare/dist-foursquare-development ./examples/basic/dist-basic-production ./examples/basic/dist-basic-development"
   },
-  "author": "0E9B061F",
-  "license": "MIT",
+  "keywords": [
+    "animation",
+    "transition",
+    "easing",
+    "frontend",
+    "web",
+    "ui"
+  ],
   "devDependencies": {
     "@babel/core": "^7.24.5",
     "@babel/preset-env": "^7.24.5",
@@ -42,7 +62,7 @@
     "sass": "^1.77.1",
     "sass-loader": "^14.2.1",
     "style-loader": "^4.0.0",
-    "waxwing.js": "file:../waxwing.js",
+    "waxwing.js": "^0.2.0",
     "webpack": "^5.91.0",
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^5.0.4"

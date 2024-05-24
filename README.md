@@ -1,4 +1,16 @@
-**fantasma.js** is a sophisticated animation library for the web. **fantasma** animates multiple elements in parallel, and supports multiple animation segments per element. It supports easings on a per-animation and per-segment basis. Animations are reusable; after being created, they must be supplied with an appropriate set of elements to produce a `Playback` object, which will animate those specific elements. Additionally, **fantasma** allows animation of any element property, not just CSS values.
+# 👻 **fantasma.js** v0.3.1 'YAOGUI'
+[![Version][icon-ver]][repo]
+[![Series][icon-ser]][repo]
+[![License][icon-lic]][license]
+[![NPM][icon-npm]][pkg]
+
+**fantasma.js** is a sophisticated animation library for the web. **fantasma**
+animates multiple elements in parallel, and supports multiple animation segments
+per element. It supports easings on a per-animation and per-segment basis.
+Animations are reusable; after being created, they must be supplied with an
+appropriate set of elements to produce a `Playback` object, which will animate
+those specific elements. Additionally, **fantasma** allows animation of any
+element property, not just CSS values.
 
 # Usage
 
@@ -137,3 +149,19 @@ These options all take a callback function. All will be called with the Playback
 * `afterPause`: Called after a pause.
 * `afterLoop`: Called after each loop.
 * `eachFrame`: Called every animation frame.
+
+# License
+
+Copyright 2020-2024 **[0E9B061F][gh]**<br/>
+Available under the terms of the [MIT LIcense][license].
+
+
+[gh]:https://github.com/0E9B061F
+[repo]:https://github.com/0E9B061F/fantasma.js
+[license]:https://github.com/0E9B061F/fantasma.js/blob/master/LICENSE
+[pkg]:https://www.npmjs.com/package/fantasma.js
+
+[icon-ver]:https://img.shields.io/github/package-json/v/0E9B061F/fantasma.js?style=flat-square&logo=github&color=%236e7fd2
+[icon-ser]:https://img.shields.io/badge/dynamic/json?color=%236e7fd2&label=series&prefix=%27&query=series&suffix=%27&url=https%3A%2F%2Fraw.githubusercontent.com%2F0E9B061F%2Ffantasma.js%2Fmaster%2Fpackage.json&style=flat-square
+[icon-lic]:https://img.shields.io/github/license/0E9B061F/fantasma.js.svg?style=flat-square&color=%236e7fd2
+[icon-npm]:https://img.shields.io/npm/v/fantasma.js.svg?style=flat-square&logo=npm&color=%23de2657

@@ -161,7 +161,7 @@ Available under the terms of the [MIT LIcense][license].
 [repo]:https://github.com/0E9B061F/fantasma.js
 [license]:https://github.com/0E9B061F/fantasma.js/blob/master/LICENSE
 [pkg]:https://www.npmjs.com/package/fantasma.js
-[commits]:https://github.com/0E9B061F/fantasma.js/commits/main
+[commits]:https://github.com/0E9B061F/fantasma.js/commits/master
 
 [icon-ver]:https://img.shields.io/github/package-json/v/0E9B061F/fantasma.js?style=flat-square&logo=github&color=%236e7fd2
 [icon-ser]:https://img.shields.io/badge/dynamic/json?color=%236e7fd2&label=series&prefix=%27&query=series&suffix=%27&url=https%3A%2F%2Fraw.githubusercontent.com%2F0E9B061F%2Ffantasma.js%2Fmaster%2Fpackage.json&style=flat-square

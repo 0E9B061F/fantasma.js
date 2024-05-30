@@ -6,7 +6,10 @@
   "license": "MIT",
   "homepage": "https://github.com/0E9B061F/fantasma.js",
   "bugs": "https://github.com/0E9B061F/fantasma.js/issues",
-  "repository": "github:0E9B061F/fantasma.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/0E9B061F/fantasma.js.git"
+  },
   "author": {
     "name": "0E9B061F",
     "email": "0E9B061F@protonmail.com",
@@ -23,7 +26,7 @@
   "scripts": {
     "test": "jasmine",
     "test:serve": "jasmine-browser-runner serve",
-    "doc": "./node_modules/.bin/esdoc -c .esdoc.json",
+    "doc": "esdoc -c .esdoc.json",
     "build": "rimraf ./dist-library-production; cross-env NODE_ENV=production webpack",
     "build:dev": "rimraf ./dist-library-development; cross-env NODE_ENV=development webpack",
     "example:4sq": "rimraf ./examples/foursquare/dist-foursquare-production; cross-env NODE_ENV=production FANJS_BUILD=foursquare webpack",

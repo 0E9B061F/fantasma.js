@@ -2,6 +2,7 @@
 [![Version][icon-ver]][repo]
 [![Series][icon-ser]][repo]
 [![License][icon-lic]][license]
+[![Maintenance][icon-mnt]][commits]<br/>
 [![NPM][icon-npm]][pkg]
 
 **fantasma.js** is a sophisticated animation library for the web. **fantasma**
@@ -160,8 +161,10 @@ Available under the terms of the [MIT LIcense][license].
 [repo]:https://github.com/0E9B061F/fantasma.js
 [license]:https://github.com/0E9B061F/fantasma.js/blob/master/LICENSE
 [pkg]:https://www.npmjs.com/package/fantasma.js
+[commits]:https://github.com/0E9B061F/fantasma.js/commits/main
 
 [icon-ver]:https://img.shields.io/github/package-json/v/0E9B061F/fantasma.js?style=flat-square&logo=github&color=%236e7fd2
 [icon-ser]:https://img.shields.io/badge/dynamic/json?color=%236e7fd2&label=series&prefix=%27&query=series&suffix=%27&url=https%3A%2F%2Fraw.githubusercontent.com%2F0E9B061F%2Ffantasma.js%2Fmaster%2Fpackage.json&style=flat-square
 [icon-lic]:https://img.shields.io/github/license/0E9B061F/fantasma.js.svg?style=flat-square&color=%236e7fd2
 [icon-npm]:https://img.shields.io/npm/v/fantasma.js.svg?style=flat-square&logo=npm&color=%23de2657
+[icon-mnt]:https://img.shields.io/maintenance/yes/2024.svg?style=flat-square

@@ -8,6 +8,9 @@ importers:
 
   .:
     devDependencies:
+      '@0e9b061f/mkv':
+        specifier: ^0.1.0
+        version: 0.1.0
       '@babel/core':
         specifier: ^7.24.5
         version: 7.24.5
@@ -67,6 +70,10 @@ importers:
         version: 5.0.4(webpack-cli@5.1.4)(webpack@5.91.0)
 
 packages:
+
+  '@0e9b061f/mkv@0.1.0':
+    resolution: {integrity: sha512-IXKd8ZsZk3Ur45w3IzNRfrMZNZIsOamnmeXiWlIRIZQ62x8n0JMd0h4KiWJvv0ilfEYo6AD0nC3WDMofLyt8PQ==}
+    hasBin: true
 
   '@ampproject/remapping@2.3.0':
     resolution: {integrity: sha512-30iZtAPgz+LTIYoeivqYo853f02jBYSd5uGnGpkFV0M3xOt9aN73erkgYAmZU43x4VfqcnLxW9Kpg3R5LC4YYw==}
@@ -3270,6 +3277,8 @@ packages:
     engines: {node: '>=12.20'}
 
 snapshots:
+
+  '@0e9b061f/mkv@0.1.0': {}
 
   '@ampproject/remapping@2.3.0':
     dependencies:

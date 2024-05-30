@@ -1,7 +1,10 @@
 {
   "name": "fantasma.js",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "series": "YAOGUI",
+  "mkv": {
+    "before": ":ghost:"
+  },
   "description": "A sophisticated animation library for the web",
   "license": "MIT",
   "homepage": "https://github.com/0E9B061F/fantasma.js",
@@ -39,7 +42,8 @@
     "examples:dev": "run-s example:basic:dev example:4sq:dev",
     "build:all": "run-s build examples",
     "build:all:dev": "run-s build:dev examples:dev",
-    "clobber": "rimraf ./doc ./dist-library-production ./dist-library-development ./examples/foursquare/dist-foursquare-production ./examples/foursquare/dist-foursquare-development ./examples/basic/dist-basic-production ./examples/basic/dist-basic-development"
+    "clobber": "rimraf ./doc ./dist-library-production ./dist-library-development ./examples/foursquare/dist-foursquare-production ./examples/foursquare/dist-foursquare-development ./examples/basic/dist-basic-production ./examples/basic/dist-basic-development",
+    "mkv": "mkv"
   },
   "keywords": [
     "animation",
@@ -50,6 +54,7 @@
     "ui"
   ],
   "devDependencies": {
+    "@0e9b061f/mkv": "^0.1.0",
     "@babel/core": "^7.24.5",
     "@babel/preset-env": "^7.24.5",
     "babel-loader": "^9.1.3",

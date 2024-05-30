@@ -1,4 +1,4 @@
-# 👻 **fantasma.js** v0.4.1 'YAOGUI'
+# :ghost: **fantasma.js** v0.4.2 'YAOGUI'
 [![Version][icon-ver]][repo]
 [![Series][icon-ser]][repo]
 [![License][icon-lic]][license]
